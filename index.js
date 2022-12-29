@@ -60,20 +60,21 @@ app.use((req, res) => {
 	throw new MainError("Page non trouvée", req, res, 404);
 });
 
-// app.js
-const postgres = require("postgres");
+//!TEST NEON
+// // app.js
+// const postgres = require("postgres");
 
-const URL =
-	"postgres://develott:OukF0DrRC7zU@ep-black-cloud-602350.eu-central-1.aws.neon.tech/develott?options=project%3Dep-black-cloud-602350";
+// const URL =
+// 	"postgres://develott:OukF0DrRC7zU@ep-black-cloud-602350.eu-central-1.aws.neon.tech/develott?options=project%3Dep-black-cloud-602350";
 
-const sql = postgres(URL, { ssl: "require" });
+// const sql = postgres(URL, { ssl: "require" });
 
-async function getPgVersion() {
-	const result = await sql`select version()`;
-	console.log(result);
-}
-
-getPgVersion();
+// async function getPgVersion() {
+// 	const result = await sql`select version()`;
+// 	console.log(result);
+// }
+// getPgVersion();
+//!TEST NEON
 
 // const PORT = process.env.PORT || 5000;
 

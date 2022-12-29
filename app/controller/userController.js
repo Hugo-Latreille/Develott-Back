@@ -37,7 +37,8 @@ const userController = {
 				throw new MainError("This user does not exists", req, res, 400);
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verify/${user.id}/${verificationLink}`;
-			const message = `http://localhost:3002/v1/user/verify/${user.id}/${verificationLink}`;
+			// const message = `http://localhost:3002/v1/user/verify/${user.id}/${verificationLink}`;
+			const message = `https://api.develott.fr/v1/user/verify/${user.id}/${verificationLink}`;
 			await postMail(data.email, message);
 			res.status(201).json(result);
 		} catch (error) {
@@ -68,7 +69,8 @@ const userController = {
 			res
 				.status(200)
 				// .redirect("https://develott-front.herokuapp.com/connexion/");
-				.redirect("http://localhost:3000/connexion/");
+				// .redirect("http://localhost:3000/connexion/");
+				.redirect("https://develott.fr/connexion/");
 		} catch (error) {
 			console.error(error);
 		}
@@ -96,7 +98,8 @@ const userController = {
 				throw new MainError("Link not uptdate", req, res, 400);
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verifyPassword/${user.id}/${verificationLink}`;
-			const message = `http://localhost:3002/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			// const message = `http://localhost:3002/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			const message = `https://api.develott.fr/v1/user/verifyPassword/${user.id}/${verificationLink}`;
 
 			const result = await resetPasswordMail(email, message);
 			res.status(200).json("ok");
@@ -131,7 +134,8 @@ const userController = {
 			res
 				.status(200)
 				// .redirect(`https://develott-front.herokuapp.com/newpassword/${userId}`);
-				.redirect(`http://localhost:3000/newpassword/${userId}`);
+				// .redirect(`http://localhost:3000/newpassword/${userId}`);
+				.redirect(`https://develott.fr/newpassword/${userId}`);
 		} catch (error) {
 			console.error(error);
 		}

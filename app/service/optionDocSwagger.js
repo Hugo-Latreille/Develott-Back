@@ -19,7 +19,7 @@ const options = {
 	filesPattern: "../**/*.js",
 	servers: [
 		{
-			url: "http://localhost:3002/api-docs/",
+			url: "https://api.develott.fr/api-docs/",
 			description: "Development server develott",
 		},
 	],
