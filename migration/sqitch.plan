@@ -1,8 +1,0 @@
-%syntax-version=1.0.0
-%project=develott
-
-1.init 2022-07-31T06:29:36Z Etudiant O'clock <student@teleporter> # add table
-2.regex 2022-07-31T06:29:53Z Etudiant O'clock <student@teleporter> # add regex
-3.index 2022-07-31T06:30:09Z Etudiant O'clock <student@teleporter> # add index
-4.data 2022-07-31T06:30:23Z Etudiant O'clock <student@teleporter> # add data
-5.views 2022-07-31T06:30:38Z Etudiant O'clock <student@teleporter> # add views

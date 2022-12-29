@@ -5,15 +5,12 @@ const jobRouter = express.Router();
 const { authenticateToken } = require("../service/jsonwebToken");
 const jobController = require("../controller/jobController");
 
-
-
 /*******************
-**      GET      **              
-*******************/
-
+ **      GET      **
+ *******************/
 
 jobRouter.get(
-		/**
+	/**
 		 * GET /v1/jobs
 		 * @summary Avoir tout les jobs
 		 * @description Avoir tout les jobs
@@ -25,15 +22,17 @@ jobRouter.get(
 			"name": "Product Owner"
 			}
 		 * @return 404 - data not found
-		 * @return 500 - Page non trouvé
+		 * @return 500 - Page non trouvée
 		 */
-	"/jobs",jobController.getAllJob)
+	"/jobs",
+	jobController.getAllJob
+);
 
 /*******************
- **       POST     **              
+ **       POST     **
  *******************/
 jobRouter.post(
-         /**
+	/**
 		 * POST /v1/project/:id(\\d+)/addjob
 		 * @summary Ajoute un job à un projet
 		 * @description Ajoute un job à un projet
@@ -54,14 +53,17 @@ jobRouter.post(
 	 	 * {"Error 500": "le serveur a du mal à répondre"}
 		 * @return {string} 500 - Description Global
 		 */
-    "/project/:id(\\d+)/addjob", authenticateToken,jobController.addJobProject);
+	"/project/:id(\\d+)/addjob",
+	authenticateToken,
+	jobController.addJobProject
+);
 
 /*******************
- **      PATCH     **              
+ **      PATCH     **
  *******************/
 
 jobRouter.patch(
-         /**
+	/**
 		 * POST /v1/user/:id(\\d+)/addjob
 		 * @summary Ajoute un job à un user
 		 * @description Ajoute un job à un user
@@ -82,10 +84,13 @@ jobRouter.patch(
 	 	 * {"Error 500": "le serveur a du mal à répondre"}
 		 * @return {string} 500 - Description Global
 		 */
-    "/user/:id(\\d+)/addjob", authenticateToken,jobController.addJobUser);
-    
+	"/user/:id(\\d+)/addjob",
+	authenticateToken,
+	jobController.addJobUser
+);
+
 jobRouter.patch(
-         /**
+	/**
 		 * PATCH /v1/user/:id(\\d+)/deletejob
 		 * @summary Retire un job à un user
 		 * @description Retire un job à un user
@@ -106,14 +111,17 @@ jobRouter.patch(
 	 	 * {"Error 500": "le serveur a du mal à répondre"}
 		 * @return {string} 500 - Description Global
 		 */
-    "/user/:id(\\d+)/deletejob", authenticateToken,jobController.deleteJobUser);
-        
+	"/user/:id(\\d+)/deletejob",
+	authenticateToken,
+	jobController.deleteJobUser
+);
+
 /*******************
-**      DELETE    **              
-*******************/
-        
+ **      DELETE    **
+ *******************/
+
 jobRouter.delete(
-         /**
+	/**
 		 * DELETE /v1/project/:id(\\d+)/deletejob
 		 * @summary Retire un job à un projet
 		 * @description Retire un job à un projet
@@ -134,6 +142,9 @@ jobRouter.delete(
 	 	 * {"Error 500": "le serveur a du mal à répondre"}
 		 * @return {string} 500 - Description Global
 		 */
-    "/project/:id(\\d+)/deletejob",authenticateToken,jobController.deleteJobProject);
+	"/project/:id(\\d+)/deletejob",
+	authenticateToken,
+	jobController.deleteJobProject
+);
 
-module.exports = jobRouter ;
+module.exports = jobRouter;

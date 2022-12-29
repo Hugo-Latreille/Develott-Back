@@ -25,23 +25,17 @@ const { triggerAsyncId } = require("async_hooks");
  */
 
 const userDatamapper = {
-
-	async checkUserExist(email){
+	async checkUserExist(email) {
 		const sql = `SELECT email FROM public.customer where email = '${email}'`;
 		try {
 			const userExist = await pool.query(sql);
 			return userExist.rows[0];
-
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async createUser(req, validationlink, res) {
-		//todo creer la requete imbriquer pour chopper le job_id
-		//     const job_id = await getJobId(req.job_name)
-		//todo vérifier que le user n'existe pas deja
-
 		const encryptedPassword = await bcrypt.hash(req.password, 10);
 		const sql = `INSERT INTO customer( firstname, lastname, password, email, city, description, profil_picture, username_gith, url_github, url_gitlab, url_portfolio, url_linkedin, validation_link)
             VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13)RETURNING *`;
@@ -74,7 +68,7 @@ const userDatamapper = {
 			return result.rows;
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async foundUserById(userId) {
@@ -84,17 +78,17 @@ const userDatamapper = {
 			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async foundUserBymail(email) {
 		const sql = "SELECT * FROM public.v_customer WHERE email=$1";
 		try {
-			const result = await pool.query(sql,[email]);
+			const result = await pool.query(sql, [email]);
 			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async foundByGithubUsername(username) {
@@ -104,7 +98,7 @@ const userDatamapper = {
 			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async destroy(userId) {
@@ -119,7 +113,8 @@ const userDatamapper = {
 	async update(body, userId) {
 		try {
 			const fields = Object.keys(body).map(
-				(prop, index) => `"${prop}" = $${index + 1}`);
+				(prop, index) => `"${prop}" = $${index + 1}`
+			);
 			const values = Object.values(body);
 			const savedPost = await pool.query(
 				`
@@ -133,7 +128,7 @@ const userDatamapper = {
 			return savedPost.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async verificationLink(id) {
@@ -141,10 +136,9 @@ const userDatamapper = {
 		try {
 			const result = await pool.query(sql);
 			return result.rows[0];
-			
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async deleteLinkEmail(id) {
@@ -154,7 +148,7 @@ const userDatamapper = {
 			await pool.query(sql, [values]);
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async updatesStatus(id) {
@@ -162,10 +156,10 @@ const userDatamapper = {
 		try {
 			values = id;
 			const result = await pool.query(sql, [values]);
-			return result.rows[0]
+			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async updatesValidationLink(validationLink, id) {
@@ -173,38 +167,37 @@ const userDatamapper = {
 		try {
 			const values = [validationLink, id];
 			const result = await pool.query(sql, values);
-			return result.rows[0]
+			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
 	async updatePassword(newPassword, id) {
 		try {
 			const encryptedPassword = await bcrypt.hash(newPassword, 10);
-	
+
 			sql = `UPDATE public."customer" SET password =$1 WHERE id=$2 RETURNING password`;
 			const values = [encryptedPassword, id];
 			const result = await pool.query(sql, values);
-			return result.rows[0]
+			return result.rows[0];
 		} catch (error) {
 			console.error(error);
-		};
+		}
 	},
 
-	async pickTechnoHasCustomer(body){
-	
-		const sql =`INSERT INTO customer_has_techno(customer_id, techno_id) VALUES($1,$2);`;
+	async pickTechnoHasCustomer(body) {
+		const sql = `INSERT INTO customer_has_techno(customer_id, techno_id) VALUES($1,$2);`;
 		const customer_id = body.customer_id;
 		const techno_id = body.techno_id;
-		values=[customer_id,techno_id];
-	try {
-		const result = await pool.query(sql, values);
-		return result.rows[0];
-	} catch (error) {
-		console.error(error);
-	};	
-	}
+		values = [customer_id, techno_id];
+		try {
+			const result = await pool.query(sql, values);
+			return result.rows[0];
+		} catch (error) {
+			console.error(error);
+		}
+	},
 };
 
 module.exports = userDatamapper;

@@ -1,6 +1,7 @@
+
 # entant que develott
 export PGUSER=develott
-export PGPASSWORD=huchaclepale
+export PGPASSWORD=develott
 # je déploie la version develott sur develott
 # sqitch deploy db:pg:NomBDD NomFichierDeploy
 
