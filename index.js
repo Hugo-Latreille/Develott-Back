@@ -1,4 +1,9 @@
 require("dotenv").config();
+
+if (typeof PhusionPassenger !== "undefined") {
+	PhusionPassenger.configure({ autoInstall: false });
+}
+
 const express = require("express");
 const app = express();
 const router = require("./app/router/index");
@@ -55,10 +60,16 @@ app.use((req, res) => {
 	throw new MainError("Page non trouvée", req, res, 404);
 });
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-	console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+// 	console.log(`Server running on http://localhost:${PORT}`);
+// });
+
+if (typeof PhusionPassenger !== "undefined") {
+	app.listen("passenger");
+} else {
+	app.listen(3000);
+}
 
 // app.listen(SERVER_PORT, () => {console.log(`Server running on http://localhost:${SERVER_PORT}/api-docs`)});
