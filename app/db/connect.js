@@ -1,8 +1,7 @@
 const Pool = require("pg-pool");
 
 const pool = new Pool({
-	connectionString:
-		"postgres://tjfwqego:bHCjuaUdNMKKWcF03C1LEqDp7wmpN3sQ@mel.db.elephantsql.com/tjfwqego",
+	connectionString: process.env.DATABASE_URL,
 	ssl: {
 		rejectUnauthorized: false,
 	},
