@@ -35,11 +35,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 // app.use(cors(corsOptions));
-app.use(
-	cors({
-		origin: "*",
-	})
-);
+app.use(cors());
 
 //Passport.js
 app.use(
