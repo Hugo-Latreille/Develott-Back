@@ -1,4 +1,4 @@
-# fly.toml file generated for develottapi on 2022-12-29T21:49:45+01:00
+# fly.toml file generated for develottapi on 2022-12-30T10:40:26+01:00
 
 app = "develottapi"
 kill_signal = "SIGINT"

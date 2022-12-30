@@ -215,6 +215,7 @@ const userController = {
 
 	async updateUser(req, res) {
 		try {
+			console.log("CONTROLLER PATCH");
 			const body = req.body;
 			const userId = req.params.id;
 			if (!userId) {
