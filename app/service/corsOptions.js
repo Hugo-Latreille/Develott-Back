@@ -1,9 +1,8 @@
 const corsOptions = {
 	origin: [
 		// "http://localhost:3000",
-		// "https://develott-front.herokuapp.com",
 		"https://develott.fr",
-		// "http://develott.fr",
+		"http://develott.fr",
 		"https://www.develott.fr",
 		"http://www.develott.fr",
 	],
