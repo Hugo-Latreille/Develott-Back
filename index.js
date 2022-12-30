@@ -60,22 +60,6 @@ app.use((req, res) => {
 	throw new MainError("Page non trouvée", req, res, 404);
 });
 
-//!TEST NEON
-// // app.js
-// const postgres = require("postgres");
-
-// const URL =
-// 	"postgres://develott:OukF0DrRC7zU@ep-black-cloud-602350.eu-central-1.aws.neon.tech/develott?options=project%3Dep-black-cloud-602350";
-
-// const sql = postgres(URL, { ssl: "require" });
-
-// async function getPgVersion() {
-// 	const result = await sql`select version()`;
-// 	console.log(result);
-// }
-// getPgVersion();
-//!TEST NEON
-
 // const PORT = process.env.PORT || 5000;
 
 // app.listen(PORT, () => {
@@ -93,5 +77,3 @@ if (typeof PhusionPassenger !== "undefined") {
 } else {
 	app.listen(3002);
 }
-
-// app.listen(SERVER_PORT, () => {console.log(`Server running on http://localhost:${SERVER_PORT}/api-docs`)});
