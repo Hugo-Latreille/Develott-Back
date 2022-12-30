@@ -91,7 +91,7 @@ app.use((req, res) => {
 if (typeof PhusionPassenger !== "undefined") {
 	app.listen("passenger");
 } else {
-	app.listen(3000);
+	app.listen(3002);
 }
 
 // app.listen(SERVER_PORT, () => {console.log(`Server running on http://localhost:${SERVER_PORT}/api-docs`)});

@@ -221,8 +221,7 @@ const userController = {
 				throw new MainError("missing parameter", req, res, 400);
 			}
 			const result = await userDatamapper.update(body, userId);
-			// return res.status(200).json(result);
-			return res.status(200);
+			return res.status(200).json(result);
 		} catch (error) {
 			console.error(error);
 		}
