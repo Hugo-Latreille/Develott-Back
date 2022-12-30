@@ -81,11 +81,11 @@ app.use((req, res) => {
 // getPgVersion();
 //!TEST NEON
 
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
-	console.log(`Server running on http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+// 	console.log(`Server running on http://localhost:${PORT}`);
+// });
 
 //? Config fly.io:
 // const PORT = process.env.PORT || 5000;
@@ -93,10 +93,10 @@ app.listen(PORT, () => {
 // app.listen(PORT, "0.0.0.0");
 
 //? config o2switch :
-// if (typeof PhusionPassenger !== "undefined") {
-// 	app.listen("passenger");
-// } else {
-// 	app.listen(3000);
-// }
+if (typeof PhusionPassenger !== "undefined") {
+	app.listen("passenger");
+} else {
+	app.listen(3000);
+}
 
 // app.listen(SERVER_PORT, () => {console.log(`Server running on http://localhost:${SERVER_PORT}/api-docs`)});
