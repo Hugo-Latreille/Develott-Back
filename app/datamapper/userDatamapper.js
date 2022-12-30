@@ -125,8 +125,7 @@ const userDatamapper = {
 					`,
 				[...values, userId]
 			);
-			//!SUPPRIMER
-			console.log("PATCH ICIIIIIIIIII", savedPost.rows[0]);
+
 			return savedPost.rows[0];
 		} catch (error) {
 			console.error(error);

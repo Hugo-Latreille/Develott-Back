@@ -19,7 +19,8 @@ const options = {
 	filesPattern: "../**/*.js",
 	servers: [
 		{
-			url: "https://api.develott.fr/api-docs/",
+			// url: "https://api.develott.fr/api-docs/",
+			url: "https://develottapi.fly.dev/api-docs/",
 			description: "Development server develott",
 		},
 	],

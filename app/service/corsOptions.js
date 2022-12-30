@@ -4,7 +4,7 @@ const corsOptions = {
 		// "https://develott-front.herokuapp.com",
 		"https://develott.fr",
 		// "http://develott.fr",
-		// "https://www.develott.fr",
+		"https://www.develott.fr",
 		// "http://www.develott.fr",
 	],
 	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",

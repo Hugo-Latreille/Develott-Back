@@ -38,7 +38,8 @@ const userController = {
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verify/${user.id}/${verificationLink}`;
 			// const message = `http://localhost:3002/v1/user/verify/${user.id}/${verificationLink}`;
-			const message = `https://api.develott.fr/v1/user/verify/${user.id}/${verificationLink}`;
+			// const message = `https://api.develott.fr/v1/user/verify/${user.id}/${verificationLink}`;
+			const message = `https://develottapi.fly.dev/v1/user/verify/${user.id}/${verificationLink}`;
 			await postMail(data.email, message);
 			res.status(201).json(result);
 		} catch (error) {
@@ -99,7 +100,8 @@ const userController = {
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verifyPassword/${user.id}/${verificationLink}`;
 			// const message = `http://localhost:3002/v1/user/verifyPassword/${user.id}/${verificationLink}`;
-			const message = `https://api.develott.fr/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			// const message = `https://api.develott.fr/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			const message = `https://develottapi.fly.dev/v1/user/verifyPassword/${user.id}/${verificationLink}`;
 
 			const result = await resetPasswordMail(email, message);
 			res.status(200).json("ok");
@@ -215,7 +217,6 @@ const userController = {
 
 	async updateUser(req, res) {
 		try {
-			console.log("CONTROLLER PATCH");
 			const body = req.body;
 			const userId = req.params.id;
 			if (!userId) {

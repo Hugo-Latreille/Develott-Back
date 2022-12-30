@@ -83,15 +83,15 @@ app.use((req, res) => {
 // });
 
 //? Config fly.io:
-// const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 
-// app.listen(PORT, "0.0.0.0");
+app.listen(PORT, "0.0.0.0");
 
 //? config o2switch :
-if (typeof PhusionPassenger !== "undefined") {
-	app.listen("passenger");
-} else {
-	app.listen(3002);
-}
+// if (typeof PhusionPassenger !== "undefined") {
+// 	app.listen("passenger");
+// } else {
+// 	app.listen(3002);
+// }
 
 // app.listen(SERVER_PORT, () => {console.log(`Server running on http://localhost:${SERVER_PORT}/api-docs`)});
