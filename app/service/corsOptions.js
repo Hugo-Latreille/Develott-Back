@@ -1,6 +1,6 @@
 const corsOptions = {
 	origin: [
-		// "http://localhost:3000",
+		"http://localhost:3000",
 		"https://develott.fr",
 		"https://www.develott.fr",
 	],

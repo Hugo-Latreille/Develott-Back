@@ -20,44 +20,57 @@ const passport = require("passport");
 const expressJsDocSwagger = require("express-jsdoc-swagger");
 const { options } = require("./app/service/optionDocSwagger");
 
-//nettoyer le body
-
 //receptionner le cookies
 const cookieParser = require("cookie-parser");
 const bodySanitizer = require("./app/service/sanitize");
-app.enable("trust proxy");
 
-//variable d'environnement
-expressJsDocSwagger(app)(options);
+//!Socket.io
+const http = require("http");
+const server = http.createServer(app);
+const pool = require("./app/db/connect");
+const { startSocket } = require("./app/service/socketIOService");
 
-app.use(bodySanitizer);
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
-app.use(cors(corsOptions));
+pool.connect().then((db) => {
+	startSocket(server, db);
 
-//Passport.js
-app.use(
-	session({
-		secret: "somethingsecretgoeshere",
-		resave: false,
-		saveUninitialized: true,
-		cookie: {
-			httpOnly: true,
-			secure: true,
-			sameSite: "none",
-			proxy: true,
-			maxAge: 360000,
-		},
-	})
-);
-app.use(passport.initialize());
-app.use(passport.session());
+	app.enable("trust proxy");
 
-app.use(router);
+	//variable d'environnement
+	expressJsDocSwagger(app)(options);
 
-app.use((req, res) => {
-	throw new MainError("Page non trouvée", req, res, 404);
+	app.use(bodySanitizer);
+	app.use(express.json());
+	app.use(express.urlencoded({ extended: true }));
+	app.use(cookieParser());
+	app.use(cors(corsOptions));
+
+	//Passport.js
+	app.use(
+		session({
+			secret: "somethingsecretgoeshere",
+			resave: false,
+			saveUninitialized: true,
+			cookie: {
+				httpOnly: true,
+				secure: true,
+				sameSite: "none",
+				proxy: true,
+				maxAge: 360000,
+			},
+		})
+	);
+	app.use(passport.initialize());
+	app.use(passport.session());
+
+	app.use(router);
+
+	app.use((req, res) => {
+		throw new MainError("Page non trouvée", req, res, 404);
+	});
+
+	server.listen(3002, () => {
+		console.log("Serveur lancé avec Socket.io");
+	});
 });
 
 // const PORT = process.env.PORT || 5000;
@@ -72,8 +85,8 @@ app.use((req, res) => {
 // app.listen(PORT, "0.0.0.0");
 
 //? config o2switch :
-if (typeof PhusionPassenger !== "undefined") {
-	app.listen("passenger");
-} else {
-	app.listen(3002);
-}
+// if (typeof PhusionPassenger !== "undefined") {
+// 	app.listen("passenger");
+// } else {
+// 	app.listen(3002);
+// }

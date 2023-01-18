@@ -4,7 +4,6 @@ function generateAccessToken(user) {
 	//on crée le token en donnant le secret
 	console.log(process.env.ACCESS_TOKEN_SECRET);
 	console.log(user);
-	console.log("ici");
 	return jwt.sign({ user: user }, process.env.ACCESS_TOKEN_SECRET, {
 		expiresIn: `5m`,
 	});

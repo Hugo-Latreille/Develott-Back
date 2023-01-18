@@ -7,12 +7,12 @@ const pool = new Pool({
 	},
 });
 
-pool.connect((err) => {
-	if (err) {
-		console.error("erreur de connection", err.stack);
-	} else {
-		console.error("connection OK");
-	}
-});
+// pool.connect((err) => {
+// 	if (err) {
+// 		console.error("erreur de connection", err.stack);
+// 	} else {
+// 		console.error("connection OK");
+// 	}
+// });
 
 module.exports = pool;

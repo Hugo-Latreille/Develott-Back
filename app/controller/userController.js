@@ -37,8 +37,8 @@ const userController = {
 				throw new MainError("This user does not exists", req, res, 400);
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verify/${user.id}/${verificationLink}`;
-			// const message = `http://localhost:3002/v1/user/verify/${user.id}/${verificationLink}`;
-			const message = `https://api.develott.fr/v1/user/verify/${user.id}/${verificationLink}`;
+			const message = `http://localhost:3002/v1/user/verify/${user.id}/${verificationLink}`;
+			// const message = `https://api.develott.fr/v1/user/verify/${user.id}/${verificationLink}`;
 			// const message = `https://develottapi.fly.dev/v1/user/verify/${user.id}/${verificationLink}`;
 			await postMail(data.email, message);
 			res.status(201).json(result);
@@ -99,8 +99,8 @@ const userController = {
 				throw new MainError("Link not uptdate", req, res, 400);
 			}
 			// const message = `https://develott.herokuapp.com/v1/user/verifyPassword/${user.id}/${verificationLink}`;
-			// const message = `http://localhost:3002/v1/user/verifyPassword/${user.id}/${verificationLink}`;
-			const message = `https://api.develott.fr/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			const message = `http://localhost:3002/v1/user/verifyPassword/${user.id}/${verificationLink}`;
+			// const message = `https://api.develott.fr/v1/user/verifyPassword/${user.id}/${verificationLink}`;
 			// const message = `https://develottapi.fly.dev/v1/user/verifyPassword/${user.id}/${verificationLink}`;
 
 			const result = await resetPasswordMail(email, message);
