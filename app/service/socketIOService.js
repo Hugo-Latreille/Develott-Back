@@ -8,18 +8,49 @@ const startSocket = (server, db) => {
 		},
 	});
 
-	io.on("connection", (socket) => {
-		console.log(`User connected`, socket.id);
+	io.use((socket, next) => {
+		const userId = socket.handshake.auth.userId;
+		if (!userId) {
+			return next(new Error("invalid userId"));
+		}
+		socket.userId = userId;
+		next();
+	});
 
-		socket.on("chat message", (msg) => {
-			console.log("message: " + msg);
-			socket.broadcast.emit("test", msg);
+	io.on("connection", async (socket) => {
+		console.log(`User connected`, socket.id, socket.userId);
+		const sockets = await io.fetchSockets();
+		const users = [];
+
+		for (const socket of sockets) {
+			users.push({
+				socketId: socket.id,
+				userId: socket.userId,
+			});
+		}
+
+		io.emit("users", users);
+
+		socket.broadcast.emit("user connected", {
+			socketId: socket.id,
+			userId: socket.userId,
 		});
+
+		// socket.on("chat message", (msg) => {
+		// 	console.log("message:", msg, socket.id);
+		// 	socket.broadcast.emit("test", msg);
+		// });
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected");
+			socket.broadcast.emit("deco", {
+				userId: socket.userId,
+			});
 		});
 	});
 };
 
 module.exports = { startSocket };
+
+//TODO
+//TODO Table message : senderId(userId), receiverId(userId), message(text), GroupChat (boolean)

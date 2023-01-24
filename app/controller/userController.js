@@ -177,7 +177,8 @@ const userController = {
 		try {
 			const userId = parseInt(req.params.id, 10);
 			if (!userId) {
-				throw new MainError("missing parameter", req, res, 400);
+				return;
+				// throw new MainError("missing parameter", req, res, 400);
 			}
 			const result = await userDatamapper.foundUserById(userId);
 			return res.status(200).json(result);
